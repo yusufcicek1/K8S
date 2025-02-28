@@ -1,4 +1,4 @@
-from qdrant_client import QdrantClient, models
+from qdrant_client import QdrantClient, models # type: ignore
 
 def create_collection(collection_name="solgar_collection"):
     """Best practice yapısına göre Qdrant koleksiyon oluşturma"""
@@ -13,7 +13,7 @@ def create_collection(collection_name="solgar_collection"):
             ),
             hnsw_config=models.HnswConfigDiff(
                 m=16, # Maksimum bağlantı sayısı: Her bir noktada HNSW grafında tutulacak maksimum komşu (bağlantı) sayısını belirler. Daha yüksek bir değer, daha fazla bellek kullanır ama sorgu performansı artabilir.
-                ef_construct=100, # İnşaa sırasında arama genişliği: İndeks oluşturulurken her bir noktaya en yakın komşuları bulmak için kullanılan aday kümenin boyutunu tanımlar. Daha yüksek değer, daha iyi indeks kalitesi sağlar ama indeksleme süresi ve bellek kullanımı artar.
+                ef_construct=100, # İndeks oluşturulurken her bir noktaya en yakın komşuları bulmak için kullanılan aday kümenin boyutunu tanımlar. Daha yüksek değer, daha iyi indeks kalitesi sağlar ama indeksleme süresi ve bellek kullanımı artar.
                 full_scan_threshold=10000 # Tam tarama eşiği: Eğer koleksiyondaki vektör sayısı bu eşiğin altındaysa, HNSW yerine tam tarama (full scan) yapılır. Bu, küçük veri setlerinde performansı optimize etmek için kullanılır.
             ),
             optimizers_config=models.OptimizersConfigDiff(
